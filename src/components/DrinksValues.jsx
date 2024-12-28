@@ -6,7 +6,7 @@ const DrinksValues = ({drinks, totalDrinks}) => {
     <li>Beer: {drinks.beer}</li>
     <li>Whiskey: {drinks.whiskey}</li>
     <li>Wine: {drinks.wine}</li>
-    <li>Total drinks: {totalDrinks}</li>
+    <li>Total drinks: <b>{totalDrinks}</b></li>
 </ul>
   )
 }
