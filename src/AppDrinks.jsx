@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import DrinksCounter from "./components/DrinksCounter.jsx";
 import DrinksValues from "./components/DrinksValues.jsx";
@@ -22,13 +22,17 @@ function AppDrinks() {
 
   const totalDrinks = drinks.beer + drinks.whiskey + drinks.wine;
 
+  useEffect(() => {
+
+  },[])
+
   return (
     <div>
       <button onClick={toggleBar}>{isVisibleBar ? "Close" : "Show"} miniBar</button>
       {isVisibleBar && (
         <div>
           <DrinksValues drinks={drinks} totalDrinks={totalDrinks} />
-          <DrinksCounter handleLogDrink={handleLogDrink} />
+          <DrinksCounter toggleBar={toggleBar} handleLogDrink={handleLogDrink} />
           <button onClick={reset}>Recet drinks</button>
         </div>
       )}
