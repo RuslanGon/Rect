@@ -11,6 +11,7 @@ function App() {
     const parseUsers = JSON.parse(stringifyUsers) ?? meest;
     return parseUsers;
   });
+  const [filter, setFilter] = useState('')
 
   useEffect(() => {
     localStorage.setItem("usersKey", JSON.stringify(users));
@@ -28,10 +29,27 @@ function App() {
     setUsers((prevState) => prevState.filter(user => user.id !== userId));
   };
 
+  const onChangeFilter = (event) => {
+    setFilter(event.target.value);
+  };
+
+  const filteredUsers = users.filter(user => {
+    // Фильтрация по имени и email
+    const lowerCaseFilter = filter.toLowerCase();
+    return (
+      user.userEmail.toLowerCase().includes(lowerCaseFilter) ||
+      user.userName.toLowerCase().includes(lowerCaseFilter)
+    );
+  });
+
   return (
     <div>
       <MailBoxForm AddUser={AddUser} />
-      <MailBox user={users} boxTitle="Meest Express" onDeleteUser={onDeleteUser} />
+     <section>
+      <h2>Search user by name or email</h2>
+      <input type="text" name="" placeholder="Search" value={filter} onChange={onChangeFilter} />
+     </section>
+      <MailBox user={filteredUsers} boxTitle="Meest Express" onDeleteUser={onDeleteUser} />
     </div>
   );
 }
