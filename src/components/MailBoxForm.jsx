@@ -1,18 +1,12 @@
 const MailBoxForm = ({ AddUser }) => {
     const handleSubmit = (event) => {
       event.preventDefault();
-  
-      // Извлечение значений из формы
-      const userEmail = event.currentTarget.elements["userEmail"].value;
+      const userEmail = event.currentTarget.elements.userEmail.value;
+      const userName = event.currentTarget.elements.userName.value;
 
-      const userName = event.currentTarget.elements["userName"].value;
-
-
-      // Вызов функции AddUser с данными
       AddUser({ userEmail, userName });
   
-      // Очистка полей формы
-      event.target.reset();
+      event.currentTarget.reset();
     };
   
     return (

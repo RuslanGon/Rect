@@ -1,11 +1,13 @@
-const MailBoxList = ({ user }) => {
-    return (
-      <div>
-        <li>Email: {user.userEmail}</li>
-        <li>Name: {user.userName}</li>
-      </div>
-    );
-  };
-  
-  export default MailBoxList;
-  
+const MailBoxList = ({ user, onDeleteUser }) => {
+  return (
+    <li>
+
+        <p>Email: {user.userEmail}</p>
+        <p>Name: {user.userName}</p>
+        <button onClick={() => onDeleteUser(user.id)}>Delete user</button>
+
+    </li>
+  );
+};
+
+export default MailBoxList;
