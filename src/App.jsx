@@ -35,10 +35,9 @@ function App() {
 
   const filteredUsers = users.filter(user => {
     // Фильтрация по имени и email
-    const lowerCaseFilter = filter.toLowerCase();
     return (
-      user.userEmail.toLowerCase().includes(lowerCaseFilter) ||
-      user.userName.toLowerCase().includes(lowerCaseFilter)
+      user.userEmail.toLowerCase().includes(filter.toLowerCase()) ||
+      user.userName.toLowerCase().includes(filter.toLowerCase())
     );
   });
 
