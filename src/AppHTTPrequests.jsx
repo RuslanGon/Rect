@@ -5,6 +5,7 @@ import Loader from "./components/Loader.jsx";
 import CartList from "./components/CartList.jsx";
 import Error from "./components/Error.jsx";
 import SearchForm from "./components/SearchForm.jsx";
+import { requestCarts } from "./services/api.js";
 
 const AppHTTPrequests = () => {
   const [carts, setCarts] = useState([]);
@@ -17,8 +18,8 @@ const AppHTTPrequests = () => {
     async function fetchCarts() {
       try {
         setIsLoading(true)
-        const { data } = await axios.get("https://dummyjson.com/carts");
-        console.log(data);
+        const  data  = await requestCarts();
+        // console.log(data);
         setCarts(data.carts);
       } catch (error) {
         console.error("Error fetching carts:", error);
@@ -29,6 +30,24 @@ const AppHTTPrequests = () => {
     }
     fetchCarts();
   }, []);
+
+
+  useEffect(() => {
+if(query.length === 0) return
+async function fetchCartsByQuery() {
+  try {
+    setIsLoading(true)
+    const { data } = await axios.get("https://dummyjson.com/carts");
+    setCarts(data.carts);
+  } catch (error) {
+    console.error("Error fetching carts:", error);
+    setIsError(true)
+  } finally {
+    setIsLoading(false)
+  }
+}
+fetchCartsByQuery();
+  }, [query])
 
   const searchQuery = (searchTherm) => {
 setQuery(searchTherm)
