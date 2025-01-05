@@ -9,9 +9,9 @@ const searchFormSchema = Yup.object().shape({
   searchTherm: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Required search"),
 });
 
-const SearchForm = () => {
+const SearchForm = ({searchQuery}) => {
   const handleSubmit = (values) => {
-    console.log(values);
+    searchQuery(values.searchTherm);
   };
 
   return (

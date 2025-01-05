@@ -10,6 +10,8 @@ const AppHTTPrequests = () => {
   const [carts, setCarts] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
+  const [query, setQuery] = useState('')
+  console.log(query);
 
   useEffect(() => {
     async function fetchCarts() {
@@ -28,10 +30,14 @@ const AppHTTPrequests = () => {
     fetchCarts();
   }, []);
 
+  const searchQuery = (searchTherm) => {
+setQuery(searchTherm)
+  }
+
   return (
     <div className={css.div}>
       <h1 className={css.title}>Cars from USA</h1>
-      <SearchForm />
+      <SearchForm searchQuery={searchQuery} />
       {isLoading && <Loader />}
       {isError && <Error /> }
       <CartList carts={carts} />
