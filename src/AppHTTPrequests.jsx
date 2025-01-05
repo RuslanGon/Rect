@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import css from './HTTP.module.css'
 import Loader from "./components/Loader.jsx";
 import CartList from "./components/CartList.jsx";
+import Error from "./components/Error.jsx";
 
 const AppHTTPrequests = () => {
   const [carts, setCarts] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   useEffect(() => {
     async function fetchCarts() {
@@ -17,6 +19,7 @@ const AppHTTPrequests = () => {
         setCarts(data.carts);
       } catch (error) {
         console.error("Error fetching carts:", error);
+        setIsError(true)
       } finally {
         setIsLoading(false)
       }
@@ -28,6 +31,7 @@ const AppHTTPrequests = () => {
     <div className={css.div}>
       <h1 className={css.title}>Cars from USA</h1>
       {isLoading && <Loader />}
+      {isError && <Error /> }
       <CartList carts={carts} />
     </div>
   );
