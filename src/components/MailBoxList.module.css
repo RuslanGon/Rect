@@ -1,0 +1,16 @@
+.name {
+    display: flex;
+    align-items: center;
+}
+
+.color {
+    width: 15px;
+    height: 15px;
+    margin-right: 6px;
+    margin-left: 6px;
+    display: inline-block
+}
+
+.btn {
+    background-color: rgb(251, 191, 187);
+}

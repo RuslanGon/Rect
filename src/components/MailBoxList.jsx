@@ -1,12 +1,17 @@
+import css from './MailBoxList.module.css'
+
 const MailBoxList = ({ user, onDeleteUser }) => {
   return (
-    <li>
-
-        <p>Email: {user.userEmail}</p>
-        <p>Name: {user.userName}</p>
-        <button onClick={() => onDeleteUser(user.id)}>Delete user</button>
-
-    </li>
+    <>
+    <p>Email: {user.userEmail}</p>
+    <p className={css.name}>
+      Name: <span
+        style={{ backgroundColor: user.favColor }}
+        className={css.color}
+      ></span> {user.userName}
+    </p>
+    <button className={css.btn} type="button" onClick={() => onDeleteUser(user.id)}>❌ User</button>
+  </>
   );
 };
 
