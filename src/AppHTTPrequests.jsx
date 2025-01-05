@@ -1,45 +1,47 @@
-// {
-//   "id": 168,
-//   "title": "Charger SXT RWD",
-//   "price": 32999.99,
-//   "quantity": 3,
-//   "total": 98999.97,
-//   "discountPercentage": 13.39,
-//   "discountedTotal": 85743.87,
-//   "thumbnail": "https://cdn.dummyjson.com/products/images/vehicle/Charger%20SXT%20RWD/thumbnail.png"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import css from './HTTP.module.css'
 
-import axios from "axios"
-import { useEffect, useState } from "react"
-
-// },
 const AppHTTPrequests = () => {
-const [carts, setCarts] = useState(null)
+  const [carts, setCarts] = useState([]);
 
-useEffect(() => {
-  async function fetchCarts () {
-const {data} = await axios.get("https://dummyjson.com/carts")
-console.log(data);
-setCarts(data.carts)
-  }
-  fetchCarts()
-}, [])
+  useEffect(() => {
+    async function fetchCarts() {
+      try {
+        const { data } = await axios.get("https://dummyjson.com/carts");
+        console.log(data);
+        setCarts(data.carts);
+      } catch (error) {
+        console.error("Error fetching carts:", error);
+      }
+    }
+    fetchCarts();
+  }, []);
 
   return (
-    <div>
-      <h1>Cars from USA</h1>
-      <ul>
-       {Array.isArray(carts) && carts.map(cart => {
-        return <li key={cart.id}>
-        <h2>Title:{cart.title}</h2>
-        <p>Price: {cart.price}</p>
-        <p>Quantity: {cart.quantity}</p>
-        <h3>Total: {cart.total}</h3>
-        <img src="" alt="" width={250} height={250} />
-      </li>
-       }) }
+    <div className={css.div}>
+      <h1 className={css.title}>Cars from USA</h1>
+      <ul >
+        {carts.map((cart) => (
+          <li key={cart.id}>
+            <ul className={css.list}>
+              {cart.products.map((product) => (
+                <li key={product.id}>
+                  <h3>Title: {product.title}</h3>
+                  <p>Price: ${product.price}</p>
+                  <p>Quantity: {product.quantity}</p>
+                  <h4>Total: ${product.total}</h4>
+                  <p>Discount: {product.discountPercentage}%</p>
+                  <p>Discounted Total: ${product.discountedTotal}</p>
+                  <img src={product.thumbnail} alt={product.title} />
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default AppHTTPrequests
+export default AppHTTPrequests;
