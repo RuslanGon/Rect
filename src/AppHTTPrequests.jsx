@@ -4,6 +4,7 @@ import css from './HTTP.module.css'
 import Loader from "./components/Loader.jsx";
 import CartList from "./components/CartList.jsx";
 import Error from "./components/Error.jsx";
+import SearchForm from "./components/SearchForm.jsx";
 
 const AppHTTPrequests = () => {
   const [carts, setCarts] = useState([]);
@@ -30,6 +31,7 @@ const AppHTTPrequests = () => {
   return (
     <div className={css.div}>
       <h1 className={css.title}>Cars from USA</h1>
+      <SearchForm />
       {isLoading && <Loader />}
       {isError && <Error /> }
       <CartList carts={carts} />
