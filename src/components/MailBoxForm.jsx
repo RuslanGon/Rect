@@ -53,7 +53,7 @@ const MailBoxForm = ({ AddUser }) => {
         <label>
           <Field type="radio" name="favColor" value="blue" />
           <span>Blue:</span>
-          <ErrorMessage component="p" name="favColor" />
+          <ErrorMessage component="span" name="favColor" />
         </label>
       <br />
       <button type="submit">Create new user 👱</button>
