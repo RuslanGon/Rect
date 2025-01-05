@@ -1,31 +1,45 @@
-const MailBoxForm = ({ AddUser }) => {
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const userEmail = event.currentTarget.elements.userEmail.value;
-      const userName = event.currentTarget.elements.userName.value;
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import * as Yup from "yup";
 
-      AddUser({ userEmail, userName });
-  
-      event.currentTarget.reset();
+const initialValues = {
+  userEmail: "",
+  userName: ""
+};
+
+const FeedbackSchema = Yup.object().shape({
+  userEmail: Yup.string().email("Must be a valid email!").required("Required email"),
+  userName: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Required name"),
+});
+
+const MailBoxForm = ({ AddUser }) => {
+    const handleSubmit = (values, actions) => {
+      // console.log(values);
+      AddUser(values)
+      actions.resetForm();
     };
   
     return (
-      <form onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit} 
+      validationSchema={FeedbackSchema}>
+      <Form>
         <h2>Add new user</h2>
         <label>
           <span>User Email</span>
           <br />
-          <input type="email" name="userEmail" required placeholder="email" />
+          <Field type="email" name="userEmail" placeholder="email" />
+          <ErrorMessage name="userEmail" component="span" />
         </label>
         <br />
         <label>
           <span>User Name</span>
           <br />
-          <input type="text" name="userName" required placeholder="name" />
+          <Field type="text" name="userName" placeholder="name" />
+          <ErrorMessage name="userName" component="span" />
         </label>
         <br />
         <button type="submit">Add user</button>
-      </form>
+      </Form>
+      </Formik>
     );
   };
   
