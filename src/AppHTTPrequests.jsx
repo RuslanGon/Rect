@@ -35,12 +35,7 @@ const AppHTTPrequests = () => {
           products.map((product) => {
             return (
               <li key={product.id}>
-                <img
-                  width={200}
-                  height={200}
-                  src={product.images}
-                  alt={product.title}
-                />
+                <img width={200} height={200} src={product.images} alt={product.title}/>
                 <h2>Title:{product.title}</h2>
                 <p>Brand: {product.brand}</p>
                 <p>Rating: {product.rating}</p>
