@@ -1,11 +1,15 @@
 import axios from "axios";
 
+const instance = axios.create({
+    baseURL: 'https://dummyjson.com/'
+})
+
 export const requestProducts = async () => {
-    const { data } = await axios.get("https://dummyjson.com/products");
+    const { data } = await instance.get("/products");
     return data
 }
 
 export const requestProductsByQuery = async (query = '') => {
-    const { data } = await axios.get(`https://dummyjson.com/products/search?q=${query}`);
+    const { data } = await instance.get(`/products/search?q=${query}`);
     return data
 }
