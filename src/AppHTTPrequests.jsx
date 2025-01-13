@@ -1,65 +1,53 @@
+// {
+//   "id": 1,
+//   "title": "Essence Mascara Lash Princess",
+//   "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+//   "category": "beauty",
+//   "price": 9.99,
+//   "discountPercentage": 7.17,
+//   "rating": 4.94,
+//   "stock": 5,
+//   "tags": [
+//     "beauty",
+//     "mascara"
+//   ],
+//   "brand": "Essence",
+//   "sku": "RCH45Q1A",
+//   "weight": 2,
+//   "dimensions": {
+//     "width": 23.17,
+//     "height": 14.43,
+//     "depth": 28.01
+
 import axios from "axios";
 import { useEffect, useState } from "react";
-import css from './HTTP.module.css'
-import Loader from "./components/Loader.jsx";
-import CartList from "./components/CartList.jsx";
-import Error from "./components/Error.jsx";
-import SearchForm from "./components/SearchForm.jsx";
-import { requestCarts } from "./services/api.js";
 
 const AppHTTPrequests = () => {
-  const [carts, setCarts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const [query, setQuery] = useState('')
-  console.log(query);
+  const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    async function fetchCarts() {
-      try {
-        setIsLoading(true)
-        const  data  = await requestCarts();
-        // console.log(data);
-        setCarts(data.carts);
-      } catch (error) {
-        console.error("Error fetching carts:", error);
-        setIsError(true)
-      } finally {
-        setIsLoading(false)
-      }
+    async function fetchProducts() {
+      const { data } = await axios.get("https://dummyjson.com/products");
+      console.log(data);
+      setProducts(data.products)
     }
-    fetchCarts();
+    fetchProducts();
   }, []);
 
-
-  useEffect(() => {
-if(query.length === 0) return
-async function fetchCartsByQuery() {
-  try {
-    setIsLoading(true)
-    const { data } = await axios.get("https://dummyjson.com/carts");
-    setCarts(data.carts);
-  } catch (error) {
-    console.error("Error fetching carts:", error);
-    setIsError(true)
-  } finally {
-    setIsLoading(false)
-  }
-}
-fetchCartsByQuery();
-  }, [query])
-
-  const searchQuery = (searchTherm) => {
-setQuery(searchTherm)
-  }
-
   return (
-    <div className={css.div}>
-      <h1 className={css.title}>Cars from USA</h1>
-      <SearchForm searchQuery={searchQuery} />
-      {isLoading && <Loader />}
-      {isError && <Error /> }
-      <CartList carts={carts} />
+    <div>
+      <h1>Super market</h1>
+      <ul>
+        {Array.isArray(products) && products.map(product => {
+          return (<li key={product.id}>
+            <img width={200} height={200} src={product.images} alt={product.title} />
+            <h2>Title:{product.title}</h2>
+            <p>Brand: {product.brand}</p>
+            <p>Rating: {product.rating}</p>
+            <h3>Price: {product.price}</h3>
+          </li>)
+        }) }
+      </ul>
     </div>
   );
 };
