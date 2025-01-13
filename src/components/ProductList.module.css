@@ -1,15 +1,38 @@
 .list {
-    margin-top: 30px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between; 
-}
-
-.item {
-    border: 1px solid black;
-    padding: 10px;
-    flex: 1 1 calc(25% - 10px); 
-    /* box-sizing: border-box; */
-    text-align: center;
-}
+    flex-wrap: wrap; /* Разрешаем перенос строк */
+    gap: 20px; /* Отступ между элементами */
+    justify-content: space-between; /* Равномерное распределение */
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем отступы списка */
+  }
+  
+  .item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    flex: 1 1 calc(25% - 20px); /* Элемент занимает 1/4 ширины */
+    box-sizing: border-box; /* Учитываем отступы */
+    text-align: left; /* Выравниваем текст по левому краю */
+    background-color: #f9f9f9; /* Светлый фон для читаемости */
+    border-radius: 8px;
+  }
+  
+  img {
+    display: block;
+    margin: 0 auto 10px; /* Центрируем изображение */
+    border-radius: 5px; /* Округляем углы */
+  }
+  
+  .item h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .item p {
+    margin: 5px 0; /* Добавляем отступ между текстом */
+  }
+  
+  .item strong {
+    font-weight: bold; /* Выделяем ключевые параметры */
+  }
+  
