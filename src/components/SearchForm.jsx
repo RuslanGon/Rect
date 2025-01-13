@@ -14,14 +14,14 @@ const SearchForm = ({searchQuery}) => {
     searchQuery(values.searchTherm);
   };
 
-  return (
+  return ( 
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
       validationSchema={searchFormSchema}
     >
       <Form>
-        <h2>Search product</h2>
+        <h2>Search product by name</h2>
         <label>
           <Field type="text" name="searchTherm" placeholder="search" />
           <ErrorMessage name="searchTherm" component="span" />
