@@ -1,55 +1,15 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Loader from "./components/Loader.jsx";
 import Error from "./components/Error.jsx";
-import { requestProducts, requestProductsByQuery } from "./services/api.js";
+// import { requestProducts, requestProductsByQuery } from "./services/api.js";
 import ProductList from "./components/ProductList.jsx";
 import css from "./AppHTTPrequests.module.css";
 import SearchForm from "./components/SearchForm.jsx";
+import { useProductSearch } from "./hooks/useProductSearch.jsx";
 
 const AppHTTPrequests = () => {
-  const [products, setProducts] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [query, setQuery] = useState("");
-
-  useEffect(() => {
-    async function fetchProducts() {
-      setIsLoading(true);
-      try {
-        const data = await requestProducts();
-        console.log(data);
-        setProducts(data.products);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    if (query.length === 0) return;
-    async function fetchProductsByQuery() {
-      setIsLoading(true);
-      try {
-        const data = await requestProductsByQuery(query);
-        console.log(data);
-        setProducts(data.products);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchProductsByQuery();
-  }, [query]);
-
-  const searchQuery = (searchTherm) => {
-    setQuery(searchTherm);
-  };
+  
+  const {products, isLoading, isError, searchQuery} = useProductSearch()
 
   return (
     <div>
