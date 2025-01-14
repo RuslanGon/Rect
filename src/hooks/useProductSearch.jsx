@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { requestProducts, requestProductsByQuery } from "../services/api.js";
 
 export const useProductSearch = () => {
-
-    const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [query, setQuery] = useState("");
@@ -47,7 +46,5 @@ export const useProductSearch = () => {
     setQuery(searchTherm);
   };
 
-
-  return {products, isLoading, isError, searchQuery}
-}
-
+  return { products, isLoading, isError, searchQuery };
+};

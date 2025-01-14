@@ -6,6 +6,7 @@ import ProductList from "./components/ProductList.jsx";
 import css from "./AppHTTPrequests.module.css";
 import SearchForm from "./components/SearchForm.jsx";
 import { useProductSearch } from "./hooks/useProductSearch.jsx";
+import UseRefExample from "./components/UseRefExample.jsx";
 
 const AppHTTPrequests = () => {
   
@@ -13,6 +14,7 @@ const AppHTTPrequests = () => {
 
   return (
     <div>
+      <UseRefExample />
       <h1 className={css.title}>Super market</h1>
       {isLoading && <Loader />}
       {isError && <Error />}
