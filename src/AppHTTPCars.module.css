@@ -1,0 +1,92 @@
+.title {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    flex: 1 1 calc(25% - 20px);
+    box-sizing: border-box;
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .item h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .item p {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #666;
+  }
+  
+  .item strong {
+    color: #444;
+  }
+  
+  .item ul {
+    padding: 0;
+    margin: 10px 0 0 0;
+    list-style: none;
+  }
+  
+  .item ul li {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+  }
+  
+  .item img {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: transform 0.3s;
+  }
+  
+  .item img:hover {
+    transform: scale(1.1);
+    border-color: #bbb;
+  }
+  
+  .item div {
+    margin-top: 15px;
+  }
+  
+  .item div ul {
+    padding-left: 15px;
+    margin-top: 10px;
+  }
+  
+  .item div ul li {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .name {
+    text-align: center;
+  }
