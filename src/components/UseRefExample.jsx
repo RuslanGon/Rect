@@ -1,18 +1,18 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 
 const UseRefExample = () => {
   const buttonRef = useRef(null);
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    // Устанавливаем фокус на инпут сразу после рендера компонента
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
+//   useEffect(() => {
+//     // Устанавливаем фокус на инпут сразу после рендера компонента
+//     if (inputRef.current) {
+//       inputRef.current.focus();
+//     }
+//   }, []);
 
   const handleClick = () => {
-    console.log(buttonRef);
+    inputRef.current.focus()
   };
 
   return (
