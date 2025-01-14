@@ -66,6 +66,7 @@
   .item img {
     border-radius: 8px;
     border: 1px solid #ddd;
+    width: 100px;
   }
   
   .item div {

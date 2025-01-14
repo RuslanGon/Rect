@@ -2,13 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Loader from "./components/Loader.jsx";
 import Error from "./components/Error.jsx";
-import css from './AppHTTPCars.module.css'
-
+import css from "./AppHTTPCars.module.css";
 
 const AppHTTPCars = () => {
   const [cars, setCars] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false)
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     async function fetchCars() {
@@ -37,12 +36,16 @@ const AppHTTPCars = () => {
         {cars && cars.length > 0 ? (
           cars.map((car) => (
             <li className={css.item} key={car.id}>
-                 <h2 className={css.name}>Name: {car.name}</h2>
-                <div style={{ textAlign: "center", marginBottom: "20px" }}>
+              <h2 className={css.name}>Name: {car.name}</h2>
+              <div>
                 <img
-                  src={car.gallery[0]?.thumb || "placeholder.jpg"} 
+                  src={car.gallery[0]?.thumb || "placeholder.jpg"}
                   alt={`Car ${car.name}`}
-                  style={{ width: "100%", maxWidth: "300px", borderRadius: "8px" }}
+                  style={{
+                    width: "100%",
+                    maxWidth: "300px",
+                    borderRadius: "8px",
+                  }}
                 />
               </div>
               <p><strong>Rating:</strong> {car.rating}</p>
@@ -53,12 +56,7 @@ const AppHTTPCars = () => {
                 <strong>Gallery:</strong>
                 <div style={{ display: "flex", gap: "10px" }}>
                   {car.gallery.map((image, index) => (
-                    <img
-                      key={index}
-                      src={image.thumb}
-                      alt={`Car ${car.name} - ${index + 1}`}
-                      style={{ width: "100px", height: "auto" }}
-                    />
+                    <img key={index} src={image.thumb} alt={`Car ${car.name} - ${index + 1}`}/>
                   ))}
                 </div>
               </div>
@@ -67,7 +65,10 @@ const AppHTTPCars = () => {
                 <ul>
                   {car.reviews.map((review, index) => (
                     <li key={index}>
-                      <p><strong>{review.reviewer_name}</strong> ({review.reviewer_rating}/5):</p>
+                      <p>
+                        <strong>{review.reviewer_name}</strong> (
+                        {review.reviewer_rating}/5):
+                      </p>
                       <p>{review.comment}</p>
                     </li>
                   ))}
