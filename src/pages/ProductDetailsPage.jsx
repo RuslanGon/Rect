@@ -5,6 +5,7 @@ import Error from "../components/Error.jsx";
 import { requestProductDetailsById } from "../services/api.js";
 import css from './ProductDetailsPage.module.css'
 import CommentPage from "./CommentPage.jsx";
+import ReviewsPage from "./ReviewsPage.jsx";
 
 const ProductDetailsPage = () => {
     const {productId} = useParams()
@@ -52,8 +53,10 @@ const ProductDetailsPage = () => {
               <p><strong>Return Policy:</strong> {productDetails.returnPolicy}</p>
               <p><strong>Minimum Order:</strong> {productDetails.minimumOrderQuantity}</p>
               <Link to='comments'>Comment</Link>
+              <Link to='reviews'>Reviews</Link>
               <Routes>
                 <Route path="/comments" element={<CommentPage />} />
+                <Route path="/reviews" element={<ReviewsPage />} />
               </Routes>
       </div>}
     
