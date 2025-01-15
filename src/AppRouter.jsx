@@ -5,6 +5,7 @@ import MailBoxPage from "./pages/MailBoxPage.jsx";
 import ProductsPage from "./pages/ProductsPage.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import CarsPage from "./pages/CarsPage.jsx";
+import CounterPage from "./pages/CounterPage.jsx";
 
 const AppRouter = () => {
 
@@ -19,6 +20,9 @@ const AppRouter = () => {
           <NavLink className={getNavLink} to="/mailbox">
             MailBox
           </NavLink>
+          <NavLink className={getNavLink} to="/counter">
+            Counter
+          </NavLink>
           <NavLink className={getNavLink} to="/products">
             Products
           </NavLink>
@@ -32,12 +36,11 @@ const AppRouter = () => {
       </header>
       <main>
         <Routes>
-          <Route path="/mailbox" element={<MailBoxPage />}/>
-          <Route path="/products" element={<ProductsPage />}/>
-          <Route path="/search" element={<SearchPage />}/>
-          <Route path="/cars" element={<CarsPage />}/>
-
-
+          <Route path="/mailbox" element={<MailBoxPage />} />
+          <Route path="/counter" element={<CounterPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/cars" element={<CarsPage />} />
         </Routes>
       </main>
     </div>
