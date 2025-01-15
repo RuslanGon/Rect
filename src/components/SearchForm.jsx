@@ -21,7 +21,6 @@ const SearchForm = ({searchQuery}) => {
       validationSchema={searchFormSchema}
     >
       <Form>
-        <h2>Search product by name</h2>
         <label>
           <Field type="text" name="searchTherm" placeholder="search" />
           <ErrorMessage name="searchTherm" component="span" />
