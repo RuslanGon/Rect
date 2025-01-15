@@ -2,6 +2,9 @@ import { NavLink, Route, Routes } from "react-router-dom";
 import css from "./AppRouter.module.css";
 import clsx from "clsx";
 import MailBoxPage from "./pages/MailBoxPage.jsx";
+import ProductsPage from "./pages/ProductsPage.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
+import CarsPage from "./pages/CarsPage.jsx";
 
 const AppRouter = () => {
 
@@ -30,6 +33,11 @@ const AppRouter = () => {
       <main>
         <Routes>
           <Route path="/mailbox" element={<MailBoxPage />}/>
+          <Route path="/products" element={<ProductsPage />}/>
+          <Route path="/search" element={<SearchPage />}/>
+          <Route path="/cars" element={<CarsPage />}/>
+
+
         </Routes>
       </main>
     </div>
