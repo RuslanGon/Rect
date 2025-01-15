@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, Route, Routes, useParams } from "react-router-dom";
 import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
 import { requestProductDetailsById } from "../services/api.js";
 import css from './ProductDetailsPage.module.css'
+import CommentPage from "./CommentPage.jsx";
 
 const ProductDetailsPage = () => {
     const {productId} = useParams()
@@ -50,7 +51,12 @@ const ProductDetailsPage = () => {
               <p><strong>Availability:</strong> {productDetails.availabilityStatus}</p>
               <p><strong>Return Policy:</strong> {productDetails.returnPolicy}</p>
               <p><strong>Minimum Order:</strong> {productDetails.minimumOrderQuantity}</p>
+              <Link to='comments'>Comment</Link>
+              <Routes>
+                <Route path="/comments" element={<CommentPage />} />
+              </Routes>
       </div>}
+    
     </div>
   );
 };
