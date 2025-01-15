@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import css from "../components/ProductList.module.css";
 
 const ProductList = ({ products }) => {
@@ -29,6 +30,7 @@ const ProductList = ({ products }) => {
               <p><strong>Availability:</strong> {product.availabilityStatus}</p>
               <p><strong>Return Policy:</strong> {product.returnPolicy}</p>
               <p><strong>Minimum Order:</strong> {product.minimumOrderQuantity}</p>
+              <Link to={`/products/${product.id}`}>See the details product</Link>
             </li>
           );
         })}

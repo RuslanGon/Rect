@@ -8,6 +8,7 @@ import CarsPage from "./pages/CarsPage.jsx";
 import CounterPage from "./pages/CounterPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
 
 const AppRouter = () => {
 
@@ -45,6 +46,7 @@ const AppRouter = () => {
           <Route path="/mailbox" element={<MailBoxPage />} />
           <Route path="/counter" element={<CounterPage />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:productId" element={<ProductDetailsPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/cars" element={<CarsPage />} />
           <Route path="*" element={<NotFoundPage />} />
