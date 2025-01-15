@@ -19,17 +19,6 @@ const ProductList = ({ products }) => {
               <p><strong>Category:</strong> {product.category}</p>
               <p><strong>Rating:</strong> {product.rating}</p>
               <p><strong>Price:</strong> ${product.price}</p>
-              <p><strong>Discount:</strong> {product.discountPercentage}%</p>
-              <p><strong>Description:</strong> {product.description}</p>
-              <p><strong>Stock:</strong> {product.stock} items</p>
-              <p><strong>Tags:</strong> {product.tags.join(", ")}</p>
-              <p><strong>Weight:</strong> {product.weight} kg</p>
-              <p><strong>Dimensions:</strong> {product.dimensions.width} x {product.dimensions.height} x {product.dimensions.depth} cm</p>
-              <p><strong>Warranty:</strong> {product.warrantyInformation}</p>
-              <p><strong>Shipping Info:</strong> {product.shippingInformation}</p>
-              <p><strong>Availability:</strong> {product.availabilityStatus}</p>
-              <p><strong>Return Policy:</strong> {product.returnPolicy}</p>
-              <p><strong>Minimum Order:</strong> {product.minimumOrderQuantity}</p>
               <Link to={`/products/${product.id}`}>See the details product</Link>
             </li>
           );

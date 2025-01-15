@@ -1,0 +1,15 @@
+.div{
+    width: 400px;
+    height: 100%;
+    border: 2px solid black;
+    padding: 10px 10px;
+    border-radius: 15px;
+margin: 0 auto;
+}
+
+.title {
+text-align: center;
+margin-bottom: 20px;
+font-size: 28px;
+margin-top: 20px;
+}

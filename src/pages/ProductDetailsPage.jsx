@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
 import { requestProductDetailsById } from "../services/api.js";
+import css from './ProductDetailsPage.module.css'
 
 const ProductDetailsPage = () => {
     const {productId} = useParams()
@@ -28,10 +29,10 @@ const ProductDetailsPage = () => {
 
   return (
     <div>
-      <h1>Product details</h1>
+      <h1 className={css.title}>Product details</h1>
       {isLoading && <Loader />}
       {isError && <Error />}
-     {productDetails !== null && <div>
+     {productDetails !== null && <div className={css.div}>
         <img src={productDetails.thumbnail} alt={productDetails.title} />
         <h2>Title: {productDetails.title}</h2>
               <p><strong>Brand:</strong> {productDetails.brand}</p>
