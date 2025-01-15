@@ -1,6 +1,6 @@
-import "./App.css";
+// import "./App.css";
 import MailBox from "../components/MailBox.jsx";
-import meest from "../meest.json";
+import meest from "../../meest.json";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import MailBoxForm from "../components/MailBoxForm.jsx";

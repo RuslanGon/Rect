@@ -39,7 +39,6 @@ const MailBoxForm = ({ AddUser }) => {
           <ErrorMessage name="userName" component="span" />
           <br />
         </label>
-        <br />
         <span>favourite color</span>
         <br />
         <label>
