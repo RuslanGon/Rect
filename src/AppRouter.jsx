@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 const AppRouter = () => {
 
-    const getNavLinkClassName = ({ isActive }) =>
+    const getNavLink = ({ isActive }) =>
         clsx(css.navLink, {
           [css.active]: isActive,})
 
@@ -12,10 +12,10 @@ const AppRouter = () => {
     <div>
       <header>
         <nav className={css.nav}>
-          <NavLink className={getNavLinkClassName} to="/mailbox">MailBox</NavLink>
-          <NavLink className={getNavLinkClassName} to="/products">Products</NavLink>
-          <NavLink className={getNavLinkClassName} to="/search">Search</NavLink>
-          <NavLink className={getNavLinkClassName} to="/cars">Cars</NavLink>
+          <NavLink className={getNavLink} to="/mailbox">MailBox</NavLink>
+          <NavLink className={getNavLink} to="/products">Products</NavLink>
+          <NavLink className={getNavLink} to="/search">Search</NavLink>
+          <NavLink className={getNavLink} to="/cars">Cars</NavLink>
         </nav>
       </header>
     </div>
