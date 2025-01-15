@@ -60,20 +60,6 @@ const AppHTTPCars = () => {
                   ))}
                 </div>
               </div>
-              <div>
-                <strong>Reviews:</strong>
-                <ul>
-                  {car.reviews.map((review, index) => (
-                    <li key={index}>
-                      <p>
-                        <strong>{review.reviewer_name}</strong> (
-                        {review.reviewer_rating}/5):
-                      </p>
-                      <p>{review.comment}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </li>
           ))
         ) : (
