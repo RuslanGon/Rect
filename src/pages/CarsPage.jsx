@@ -36,7 +36,7 @@ const CarsPage = () => {
         {cars && cars.length > 0 ? (
           cars.map((car) => (
             <li className={css.item} key={car.id}>
-              <h2 className={css.name}>Name: {car.name}</h2>
+              <h2 className={css.name}>{car.name}</h2>
               <div>
                 <img
                   src={car.gallery[0]?.thumb || "placeholder.jpg"}
@@ -51,15 +51,15 @@ const CarsPage = () => {
               <p><strong>Rating:</strong> {car.rating}</p>
               <p><strong>Price:</strong> ${car.price}</p>
               <p><strong>Location:</strong> {car.location}</p>
-              <p><strong>Description:</strong> {car.description}</p>
-              <div>
+              {/* <p><strong>Description:</strong> {car.description}</p> */}
+              {/* <div>
                 <strong>Gallery:</strong>
                 <div style={{ display: "flex", gap: "10px" }}>
                   {car.gallery.map((image, index) => (
                     <img key={index} src={image.thumb} alt={`Car ${car.name} - ${index + 1}`}/>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </li>
           ))
         ) : (
