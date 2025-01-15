@@ -6,6 +6,7 @@ import ProductsPage from "./pages/ProductsPage.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import CarsPage from "./pages/CarsPage.jsx";
 import CounterPage from "./pages/CounterPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
 
 const AppRouter = () => {
 
@@ -17,6 +18,9 @@ const AppRouter = () => {
     <div>
       <header>
         <nav className={css.nav}>
+        <NavLink className={getNavLink} to="/">
+            Home Page
+          </NavLink>
           <NavLink className={getNavLink} to="/mailbox">
             MailBox
           </NavLink>
@@ -36,6 +40,7 @@ const AppRouter = () => {
       </header>
       <main>
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/mailbox" element={<MailBoxPage />} />
           <Route path="/counter" element={<CounterPage />} />
           <Route path="/products" element={<ProductsPage />} />
