@@ -11,6 +11,7 @@ const searchFormSchema = Yup.object().shape({
 
 const SearchForm = ({searchQuery}) => {
   const handleSubmit = (values) => {
+    console.log(values);
     searchQuery(values.searchTherm);
   };
 

@@ -16,7 +16,7 @@ const AppHTTPCars = () => {
         const response = await axios.get(
           "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers"
         );
-        setCars(response.data.items); // Сохраняем массив автомобилей в состояние
+        setCars(response.data.items); 
       } catch (error) {
         console.error("Error fetching products:", error);
         setIsError(true);
