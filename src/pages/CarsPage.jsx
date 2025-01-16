@@ -5,6 +5,7 @@ import Error from "../components/Error.jsx";
 import css from "../AppHTTPCars.module.css";
 import SearchForm from "../components/SearchForm.jsx";
 import { useCarsSearch } from "../hooks/useCarsSearch.jsx";
+import { Link } from "react-router-dom";
 
 const CarsPage = () => {
 
@@ -90,6 +91,7 @@ const CarsPage = () => {
                   ))}
                 </div>
               </div> */}
+              <Link to={`/cars/${car.id}`}>See the details</Link>
             </li>
           ))
         ) : (
