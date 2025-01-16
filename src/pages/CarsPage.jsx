@@ -76,12 +76,7 @@ const CarsPage = () => {
                 <img
                   src={car.gallery[0]?.thumb || "placeholder.jpg"}
                   alt={`Car ${car.name}`}
-                  style={{
-                    width: "100%",
-                    maxWidth: "300px",
-                    borderRadius: "8px",
-                  }}
-                />
+                  style={{width: "100%", maxWidth: "300px", borderRadius: "8px",}} />
               </div>
               <p><strong>Rating:</strong> {car.rating}</p>
               <p><strong>Price:</strong> ${car.price}</p>

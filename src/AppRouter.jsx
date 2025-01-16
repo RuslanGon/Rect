@@ -9,6 +9,7 @@ import CounterPage from "./pages/CounterPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
+import CarsDetailsPage from "./pages/CarsDetailsPage.jsx";
 
 const AppRouter = () => {
 
@@ -49,6 +50,7 @@ const AppRouter = () => {
           <Route path="/products/:productId/*" element={<ProductDetailsPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/cars" element={<CarsPage />} />
+          <Route path="/cars/:carsId" element={< CarsDetailsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
