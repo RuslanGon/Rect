@@ -30,15 +30,14 @@ const CarsPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!query) {
-      setCars(null);
-      return;
-    }
+    if (query === 0) return
+      
+    
     async function fetchAndFilterCars() {
       setIsLoading(true);
       try {
         const response = await axios.get("https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers");
-        console.log(response.data); // Проверяем структуру
+        console.log(response.data); 
         const filteredCars = response.data.items.filter(car =>
           car.name.toLowerCase().includes(query.toLowerCase()) ||
           car.location.toLowerCase().includes(query.toLowerCase()) 
@@ -57,7 +56,6 @@ const CarsPage = () => {
   const searchQuery = (searchTherm) => {
     setQuery(searchTherm);
   };
-
 
   return (
     <div>
