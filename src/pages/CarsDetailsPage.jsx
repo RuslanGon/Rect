@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, Route, Routes, useParams } from "react-router-dom";
 import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
 import css from './ProductDetailsPage.module.css'
+import ReviewPage from "./ReviewPage.jsx";
 
 
 const CarsDetailsPage = () => {
@@ -84,23 +85,10 @@ const CarsDetailsPage = () => {
               />
             ))}
           </div>
-          {/* <h3>Reviews</h3>
-          <div>
-            {carsDetails.reviews?.map((review, index) => (
-              <div
-                key={index}
-                style={{
-                  border: "1px solid #ddd",
-                  padding: "10px",
-                  borderRadius: "8px",
-                  marginBottom: "10px",
-                }}
-              >
-                <p><strong>{review.reviewer_name}</strong> rated it {review.reviewer_rating} stars</p>
-                <p>{review.comment}</p>
-              </div>
-            ))}
-          </div> */}
+          <Link to='reviews'>Review</Link>
+          <Routes>
+            <Route path="reviews"  element={<ReviewPage />}/>
+          </Routes>
         </div>
       )}
     </div>

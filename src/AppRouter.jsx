@@ -50,7 +50,7 @@ const AppRouter = () => {
           <Route path="/products/:productId/*" element={<ProductDetailsPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/cars" element={<CarsPage />} />
-          <Route path="/cars/:carId" element={< CarsDetailsPage />} />
+          <Route path="/cars/:carId/*" element={< CarsDetailsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

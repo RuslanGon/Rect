@@ -63,7 +63,7 @@ const CarsPage = () => {
   // };
 
   return (
-    <div>
+    <div >
       <h1 className={css.title}>Cars market</h1>
       <SearchForm searchQuery={searchQuery}/>
       {isLoading && <Loader />}
@@ -82,15 +82,6 @@ const CarsPage = () => {
               <p><strong>Rating:</strong> {car.rating}</p>
               <p><strong>Price:</strong> ${car.price}</p>
               <p><strong>Location:</strong> {car.location}</p>
-              {/* <p><strong>Description:</strong> {car.description}</p> */}
-              {/* <div>
-                <strong>Gallery:</strong>
-                <div style={{ display: "flex", gap: "10px" }}>
-                  {car.gallery.map((image, index) => (
-                    <img key={index} src={image.thumb} alt={`Car ${car.name} - ${index + 1}`}/>
-                  ))}
-                </div>
-              </div> */}
               <Link to={`/cars/${car.id}`}>See the details</Link>
             </li>
           ))
