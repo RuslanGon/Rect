@@ -37,7 +37,7 @@ const CarsDetailsPage = () => {
       <h1 className={css.title}>Car Details</h1>
       {isLoading && <Loader />}
       {isError && <Error />}
-      {carsDetails && (
+      {carsDetails !== null && (
         <div className={css.div}>
           <img
             src={carsDetails.gallery?.[0]?.original || "placeholder.jpg"}
