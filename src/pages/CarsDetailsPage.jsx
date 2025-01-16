@@ -85,7 +85,7 @@ const CarsDetailsPage = () => {
               />
             ))}
           </div>
-          <Link to='reviews'>Review</Link>
+          <Link to='reviews'>Comments</Link>
           <Routes>
             <Route path="reviews"  element={<ReviewPage />}/>
           </Routes>

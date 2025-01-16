@@ -16,7 +16,7 @@ const SearchForm = ({searchQuery}) => {
   };
 
   return ( 
-    <Formik
+    <Formik 
       initialValues={initialValues}
       onSubmit={handleSubmit}
       validationSchema={searchFormSchema}
