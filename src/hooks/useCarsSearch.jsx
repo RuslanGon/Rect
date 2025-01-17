@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export const useCarsSearch = () => {
   const [cars, setCars] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [query, setQuery] = useState('')
+  // const [query, setQuery] = useState('')
+
+  const [searchParams, setSearchParams] = useSearchParams()
+  const query = searchParams.get('query')
 
   useEffect(() => {
     async function fetchCars() {
@@ -50,7 +54,8 @@ export const useCarsSearch = () => {
   }, [query]);
 
   const searchQuery = (searchTherm) => {
-    setQuery(searchTherm);
+    // setQuery(searchTherm);
+    setSearchParams({query: searchTherm})
   };
 
   return {cars, isLoading, isError, searchQuery}

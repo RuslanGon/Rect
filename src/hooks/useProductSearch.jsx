@@ -30,7 +30,7 @@ export const useProductSearch = ({isSearchPage = false}) => {
   }, [isSearchPage]);
 
   useEffect(() => {
-    if (query === null) return;
+    if (!query) return;
     async function fetchProductsByQuery() {
       setIsLoading(true);
       try {
