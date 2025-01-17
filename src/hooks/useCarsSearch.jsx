@@ -29,9 +29,9 @@ export const useCarsSearch = () => {
     fetchCars();
   }, []);
 
-  // Второй useEffect: фильтрация автомобилей на основе query
+
   useEffect(() => {
-    if (!query) return; // Если query пустое, выход
+    if (!query) return; 
 
     async function fetchAndFilterCars() {
       setIsLoading(true);

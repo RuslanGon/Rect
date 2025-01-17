@@ -15,7 +15,7 @@ const CarsDetailsPage = () => {
   const [isError, setIsError] = useState(false);
 
   const location = useLocation()
-    const backRefLink = useRef(location.state ?? '/cars')
+  const backRefLink = useRef(location.state ?? '/cars')
 
   useEffect(() => {
     async function fetchCarsDetails() {
