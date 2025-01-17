@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import css from "../components/ProductList.module.css";
 
 const ProductList = ({ products }) => {
-// const location = useLocation()
+const location = useLocation()
 
   return (
     <ul className={css.list}>
@@ -23,7 +23,7 @@ const ProductList = ({ products }) => {
               <p><strong>Category:</strong> {product.category}</p>
               <p><strong>Rating:</strong> {product.rating}</p>
               <p><strong>Price:</strong> ${product.price}</p>
-              <Link to={`/products/${product.id}`}>See the details product</Link>
+              <Link state={location} to={`/products/${product.id}`}>See the details product</Link>
             </li>
           );
         })}

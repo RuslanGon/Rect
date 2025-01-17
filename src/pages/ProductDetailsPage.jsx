@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
 import { requestProductDetailsById } from "../services/api.js";
@@ -12,6 +12,9 @@ const ProductDetailsPage = () => {
     const [productDetails, setProductDetails] = useState(null)
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+
+    const location = useLocation()
+    const backRefLink = useRef(location.state ?? '/')
 
     useEffect(() => {
         async function fetchProductDetails() {
@@ -35,6 +38,7 @@ const ProductDetailsPage = () => {
       {isLoading && <Loader />}
       {isError && <Error />}
      {productDetails !== null && <div className={css.div}>
+     <Link to={backRefLink.current}>Go back</Link>
         <img src={productDetails.thumbnail} alt={productDetails.title} />
         <h2>Title: {productDetails.title}</h2>
               <p><strong>Brand:</strong> {productDetails.brand}</p>

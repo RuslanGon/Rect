@@ -6,11 +6,11 @@ export const useCarsSearch = () => {
   const [cars, setCars] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  // const [query, setQuery] = useState('')
 
-  const [searchParams, setSearchParams] = useSearchParams()
-  const query = searchParams.get('query')
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query");
 
+  // Первый useEffect: загрузка всех автомобилей
   useEffect(() => {
     async function fetchCars() {
       setIsLoading(true);
@@ -18,7 +18,7 @@ export const useCarsSearch = () => {
         const response = await axios.get(
           "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers"
         );
-        setCars(response.data.items); 
+        setCars(response.data.items);
       } catch (error) {
         console.error("Error fetching products:", error);
         setIsError(true);
@@ -29,19 +29,26 @@ export const useCarsSearch = () => {
     fetchCars();
   }, []);
 
+  // Второй useEffect: фильтрация автомобилей на основе query
   useEffect(() => {
-    if (query === 0) return
-      
-    
+    if (!query) return; // Если query пустое, выход
+
     async function fetchAndFilterCars() {
       setIsLoading(true);
       try {
-        const response = await axios.get("https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers");
-        console.log(response.data); 
-        const filteredCars = response.data.items.filter(car =>
-          car.name.toLowerCase().includes(query.toLowerCase()) ||
-          car.location.toLowerCase().includes(query.toLowerCase()) 
+        const response = await axios.get(
+          "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers"
         );
+
+        const filteredCars = response.data.items.filter((car) => {
+          const carName = car.name || ""; // Подстраховка на случай, если name отсутствует
+          const carLocation = car.location || ""; // Подстраховка для location
+          return (
+            carName.toLowerCase().includes(query.toLowerCase()) ||
+            carLocation.toLowerCase().includes(query.toLowerCase())
+          );
+        });
+
         setCars(filteredCars);
       } catch (error) {
         console.error("Error fetching cars:", error);
@@ -50,14 +57,14 @@ export const useCarsSearch = () => {
         setIsLoading(false);
       }
     }
+
     fetchAndFilterCars();
   }, [query]);
 
-  const searchQuery = (searchTherm) => {
-    // setQuery(searchTherm);
-    setSearchParams({query: searchTherm})
+  // Функция для обновления параметра поиска
+  const searchQuery = (searchTerm) => {
+    setSearchParams({ query: searchTerm });
   };
 
-  return {cars, isLoading, isError, searchQuery}
-}
-
+  return { cars, isLoading, isError, searchQuery };
+};

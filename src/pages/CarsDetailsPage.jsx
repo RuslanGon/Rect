@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
 import css from './ProductDetailsPage.module.css'
@@ -14,6 +14,9 @@ const CarsDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  const location = useLocation()
+    const backRefLink = useRef(location.state ?? '/cars')
+
   useEffect(() => {
     async function fetchCarsDetails() {
       setIsLoading(true);
@@ -23,6 +26,7 @@ const CarsDetailsPage = () => {
         );
         console.log(response.data); // Проверяем структуру ответа
         setCarsDetails(response.data); // Устанавливаем данные напрямую
+        console.log("Response data:", response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
         setIsError(true);
@@ -40,6 +44,7 @@ const CarsDetailsPage = () => {
       {isError && <Error />}
       {carsDetails !== null && (
         <div className={css.div}>
+     <Link to={backRefLink.current}>Go back</Link>
           <img
             src={carsDetails.gallery?.[0]?.original || "placeholder.jpg"}
             alt={`Car ${carsDetails.name}`}
