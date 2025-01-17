@@ -18,7 +18,7 @@ const NotFoundPage = () => {
       <h1 style={{ fontSize: "36px" }}>
         Oops! The page you are looking for doesnt exist.
       </h1>
-      <h2>You will be redirected to home in {5 - timer} seconds</h2>
+      <h2 style={{ fontSize: "26px" }}>You will be redirected to home in {5 - timer} seconds</h2>
       <Link to="/">Go to Home page</Link>
     </div>
   );
