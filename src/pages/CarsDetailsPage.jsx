@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
 import css from './ProductDetailsPage.module.css'
-import ReviewPage from "./ReviewPage.jsx";
+// import ReviewPage from "./ReviewPage.jsx";
+const ReviewPage = lazy(() => import("./ReviewPage.jsx"));
 
 
 const CarsDetailsPage = () => {
@@ -91,9 +92,11 @@ const CarsDetailsPage = () => {
             ))}
           </div>
           <Link to='reviews'>Comments</Link>
+          <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="reviews"  element={<ReviewPage />}/>
           </Routes>
+          </Suspense>
         </div>
       )}
     </div>

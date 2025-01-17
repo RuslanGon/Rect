@@ -1,15 +1,28 @@
 import { NavLink, Route, Routes } from "react-router-dom";
 import css from "./AppRouter.module.css";
 import clsx from "clsx";
-import MailBoxPage from "./pages/MailBoxPage.jsx";
-import ProductsPage from "./pages/ProductsPage.jsx";
-import SearchPage from "./pages/SearchPage.jsx";
-import CarsPage from "./pages/CarsPage.jsx";
-import CounterPage from "./pages/CounterPage.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import NotFoundPage from "./pages/NotFoundPage.jsx";
-import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
-import CarsDetailsPage from "./pages/CarsDetailsPage.jsx";
+import { Suspense, lazy } from "react";
+
+// import MailBoxPage from "./pages/MailBoxPage.jsx";
+// import ProductsPage from "./pages/ProductsPage.jsx";
+// import SearchPage from "./pages/SearchPage.jsx";
+// import CarsPage from "./pages/CarsPage.jsx";
+// import CounterPage from "./pages/CounterPage.jsx";
+// import HomePage from "./pages/HomePage.jsx";
+// import NotFoundPage from "./pages/NotFoundPage.jsx";
+// import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
+// import CarsDetailsPage from "./pages/CarsDetailsPage.jsx";
+
+const MailBoxPage = lazy(() => import("./pages/MailBoxPage.jsx"))
+const ProductsPage = lazy(() => import("./pages/ProductsPage.jsx"));
+const SearchPage = lazy(() => import("./pages/SearchPage.jsx"));
+const CarsPage = lazy(() => import("./pages/CarsPage.jsx"));
+const CounterPage = lazy(() => import("./pages/CounterPage.jsx"));
+const HomePage = lazy(() => import("./pages/HomePage.jsx"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
+const ProductDetailsPage = lazy(() => import("./pages/ProductDetailsPage.jsx"));
+const CarsDetailsPage = lazy(() => import("./pages/CarsDetailsPage.jsx"));
+const Loader = lazy(() => import("./components/Loader.jsx"));
 
 const AppRouter = () => {
 
@@ -42,6 +55,7 @@ const AppRouter = () => {
         </nav>
       </header>
       <main>
+        <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/mailbox" element={<MailBoxPage />} />
@@ -53,6 +67,7 @@ const AppRouter = () => {
           <Route path="/cars/:carId/*" element={< CarsDetailsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        </Suspense>
       </main>
     </div>
   );
