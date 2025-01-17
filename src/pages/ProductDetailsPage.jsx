@@ -14,7 +14,7 @@ const ProductDetailsPage = () => {
     const [isError, setIsError] = useState(false);
 
     const location = useLocation()
-    const backRefLink = useRef(location.state ?? '/')
+    const backRefLink = useRef(location.state ?? '/products')
 
     useEffect(() => {
         async function fetchProductDetails() {
