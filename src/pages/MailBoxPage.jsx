@@ -5,6 +5,7 @@ import { useEffect} from "react";
 import { nanoid } from "nanoid";
 import MailBoxForm from "../components/MailBoxForm.jsx";
 import { useDispatch, useSelector } from "react-redux";
+import { addUser, deleteUser, setFilter } from "../redux/mailbox/mailboxReducer.js";
 
 function MailBoxPage() {
   // const [users, setUsers] = useState(() => {
@@ -26,23 +27,28 @@ const filter = useSelector((state) => state.mailbox.filter);
       ...formData,
       id: nanoid(),
     };
-    const action = {type:'mailbox/ADD_USER', payload: finalUser}
-    dispatch(action)
+    // const action = {type:'mailbox/ADD_USER', payload: finalUser}
+    // dispatch(action)
+    dispatch(addUser(finalUser));
 
     // setUsers((prevState) => [...prevState, finalUser]); 
   };
 
   const onDeleteUser = (userId) => {
-    const action = {type:'mailbox/DELETE_USER', payload: userId}
-    dispatch(action)
+    // const action = {type:'mailbox/DELETE_USER', payload: userId}
+    // dispatch(action)
+
+    dispatch(deleteUser(userId));
 
     // setUsers((prevState) => prevState.filter(user => user.id !== userId));
     
   };
 
   const onChangeFilter = (event) => {
-    const action = {type:'mailbox/FILTER_USER', payload: event.target.value}
-    dispatch(action)
+
+    dispatch(setFilter(event.target.value));
+    // const action = {type:'mailbox/FILTER_USER', payload: event.target.value}
+    // dispatch(action)
 
     // setFilter(event.target.value);
   };
