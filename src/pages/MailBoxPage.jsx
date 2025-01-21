@@ -33,9 +33,11 @@ const filter = useSelector((state) => state.mailbox.filter);
   };
 
   const onDeleteUser = (userId) => {
-    // setUsers((prevState) => prevState.filter(user => user.id !== userId));
     const action = {type:'mailbox/DELETE_USER', payload: userId}
     dispatch(action)
+
+    // setUsers((prevState) => prevState.filter(user => user.id !== userId));
+    
   };
 
   const onChangeFilter = (event) => {
