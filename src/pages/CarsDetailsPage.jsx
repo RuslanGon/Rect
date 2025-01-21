@@ -1,51 +1,56 @@
 import axios from "axios";
-import { Suspense, lazy, useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef } from "react";
 import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchCarsDetailsStart,
+  fetchCarsDetailsSuccess,
+  fetchCarsDetailsFailure,
+  clearCarsDetails, 
+} from "../redux/cars/carsSlice.js";
 import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
-import css from './ProductDetailsPage.module.css'
-// import ReviewPage from "./ReviewPage.jsx";
-const ReviewPage = lazy(() => import("./ReviewPage.jsx"));
+import css from "./ProductDetailsPage.module.css";
 
+const ReviewPage = lazy(() => import("./ReviewPage.jsx"));
 
 const CarsDetailsPage = () => {
   const { carId } = useParams();
+  const dispatch = useDispatch();
+  const { carsDetails, isLoading, isError } = useSelector((state) => state.cars);
 
-  const [carsDetails, setCarsDetails] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  const location = useLocation()
-  const backRefLink = useRef(location.state ?? '/cars')
+  const location = useLocation();
+  const backRefLink = useRef(location.state ?? "/cars");
 
   useEffect(() => {
     async function fetchCarsDetails() {
-      setIsLoading(true);
+      dispatch(fetchCarsDetailsStart());
       try {
         const response = await axios.get(
           `https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers/${carId}`
         );
-        console.log(response.data); // Проверяем структуру ответа
-        setCarsDetails(response.data); // Устанавливаем данные напрямую
-        console.log("Response data:", response.data);
+        dispatch(fetchCarsDetailsSuccess(response.data));
       } catch (error) {
-        console.error("Error fetching products:", error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
+        console.log(error);
+        dispatch(fetchCarsDetailsFailure());
       }
     }
+
     fetchCarsDetails();
-  }, [carId]);
+
+    return () => {
+      dispatch(clearCarsDetails());
+    };
+  }, [carId, dispatch]);
 
   return (
     <div>
       <h1 className={css.title}>Car Details</h1>
       {isLoading && <Loader />}
       {isError && <Error />}
-      {carsDetails !== null && (
+      {carsDetails && (
         <div className={css.div}>
-     <Link to={backRefLink.current}>Go back</Link>
+          <Link to={backRefLink.current}>Go back</Link>
           <img
             src={carsDetails.gallery?.[0]?.original || "placeholder.jpg"}
             alt={`Car ${carsDetails.name}`}
@@ -91,11 +96,11 @@ const CarsDetailsPage = () => {
               />
             ))}
           </div>
-          <Link to='reviews'>Comments</Link>
+          <Link to="reviews">Comments</Link>
           <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="reviews"  element={<ReviewPage />}/>
-          </Routes>
+            <Routes>
+              <Route path="reviews" element={<ReviewPage />} />
+            </Routes>
           </Suspense>
         </div>
       )}
