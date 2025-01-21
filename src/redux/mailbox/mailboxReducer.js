@@ -17,6 +17,12 @@ export const mailboxReducer = (state = INITAL_STATE, action) => {
                 users: state.users.filter(user => user.id !== action.payload)
             };
         }
+        case 'mailbox/FILTER_USER': {
+            return {
+                ...state,
+               filter: action.payload
+            };
+        }
         default: 
             return state;
     }

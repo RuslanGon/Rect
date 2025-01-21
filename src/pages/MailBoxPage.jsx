@@ -1,7 +1,7 @@
 // import "./App.css";
 import MailBox from "../components/MailBox.jsx";
-import meest from "../../meest.json";
-import { useEffect, useState } from "react";
+// import meest from "../../meest.json";
+import { useEffect} from "react";
 import { nanoid } from "nanoid";
 import MailBoxForm from "../components/MailBoxForm.jsx";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,7 +39,10 @@ const filter = useSelector((state) => state.mailbox.filter);
   };
 
   const onChangeFilter = (event) => {
-    setFilter(event.target.value);
+    const action = {type:'mailbox/FILTER_USER', payload: event.target.value}
+    dispatch(action)
+
+    // setFilter(event.target.value);
   };
 
   const filteredUsers = users.filter(user => {
