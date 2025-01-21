@@ -13,29 +13,18 @@ import {
   REGISTER,
 } from "redux-persist";
 
-
 const mailboxPersistConfig = {
   key: "mailbox",
   storage,
   whitelist: ["users"], 
 };
 
-
-const carsPersistConfig = {
-  key: "cars",
-  storage,
-  whitelist: ["carDetails"]
-};
-
-
 const persisMailboxReducer = persistReducer(mailboxPersistConfig, mailboxReducer);
-const persisCarsReducer = persistReducer(carsPersistConfig, carsReducer);
-
 
 export const store = configureStore({
   reducer: {
     mailbox: persisMailboxReducer,
-    cars: persisCarsReducer,
+    cars: carsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
