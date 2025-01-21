@@ -27,26 +27,28 @@ const filter = useSelector((state) => state.mailbox.filter);
       ...formData,
       id: nanoid(),
     };
-    // const action = {type:'mailbox/ADD_USER', payload: finalUser}
-    // dispatch(action)
+
     dispatch(addUser(finalUser));
 
+    // const action = {type:'mailbox/ADD_USER', payload: finalUser}
+    // dispatch(action)
+    
     // setUsers((prevState) => [...prevState, finalUser]); 
   };
 
   const onDeleteUser = (userId) => {
+    dispatch(deleteUser(userId));
+
     // const action = {type:'mailbox/DELETE_USER', payload: userId}
     // dispatch(action)
 
-    dispatch(deleteUser(userId));
-
     // setUsers((prevState) => prevState.filter(user => user.id !== userId));
-    
   };
 
   const onChangeFilter = (event) => {
 
     dispatch(setFilter(event.target.value));
+
     // const action = {type:'mailbox/FILTER_USER', payload: event.target.value}
     // dispatch(action)
 
@@ -54,7 +56,6 @@ const filter = useSelector((state) => state.mailbox.filter);
   };
 
   const filteredUsers = users.filter(user => {
-    // Фильтрация по имени и email
     return (
       user.userEmail.toLowerCase().includes(filter.toLowerCase()) ||
       user.userName.toLowerCase().includes(filter.toLowerCase())
