@@ -1,47 +1,54 @@
-import axios from "axios";
+// import axios from "axios";
 import { Suspense, lazy, useEffect, useRef } from "react";
 import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchCarsDetailsStart,
-  fetchCarsDetailsSuccess,
-  fetchCarsDetailsFailure,
-  clearCarsDetails, 
-} from "../redux/cars/carsSlice.js";
+// import {
+//   fetchCarsDetailsStart,
+//   fetchCarsDetailsSuccess,
+//   fetchCarsDetailsFailure,
+//   clearCarsDetails, 
+// } from "../redux/cars/carsSlice.js";
 import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
 import css from "./ProductDetailsPage.module.css";
+import { apiRequestCarDetailsById } from "../redux/cars/operations.js";
 
 const ReviewPage = lazy(() => import("./ReviewPage.jsx"));
 
 const CarsDetailsPage = () => {
   const { carId } = useParams();
   const dispatch = useDispatch();
-  const { carsDetails, isLoading, isError } = useSelector((state) => state.cars);
-
+  const carsDetails = useSelector(state => state.cars.carsDetails)
+  const isLoading = useSelector(state => state.cars.isLoading)
+  const isError = useSelector(state => state.cars.isError)
+  // const { carsDetails, isLoading, isError } = useSelector((state) => state.cars);
   const location = useLocation();
   const backRefLink = useRef(location.state ?? "/cars");
 
   useEffect(() => {
-    async function fetchCarsDetails() {
-      dispatch(fetchCarsDetailsStart());
-      try {
-        const response = await axios.get(
-          `https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers/${carId}`
-        );
-        dispatch(fetchCarsDetailsSuccess(response.data));
-      } catch (error) {
-        console.log(error);
-        dispatch(fetchCarsDetailsFailure());
-      }
-    }
+    dispatch(apiRequestCarDetailsById(carId))
+  }, [dispatch, carId])
 
-    fetchCarsDetails();
+  // useEffect(() => {
+  //   async function fetchCarsDetails() {
+  //     dispatch(fetchCarsDetailsStart());
+  //     try {
+  //       const response = await axios.get(
+  //         `https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers/${carId}`
+  //       );
+  //       dispatch(fetchCarsDetailsSuccess(response.data));
+  //     } catch (error) {
+  //       console.log(error);
+  //       dispatch(fetchCarsDetailsFailure());
+  //     }
+  //   }
 
-    return () => {
-      dispatch(clearCarsDetails());
-    };
-  }, [carId, dispatch]);
+  //   fetchCarsDetails();
+
+  //   return () => {
+  //     dispatch(clearCarsDetails());
+  //   };
+  // }, [carId, dispatch]);
 
   return (
     <div>

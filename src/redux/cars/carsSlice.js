@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { apiRequestCarDetailsById } from "./operations.js";
 
 const INITIAL_STATE = {
   carsDetails: null, 
@@ -9,25 +10,20 @@ const INITIAL_STATE = {
 const carsSlice = createSlice({
   name: "cars",
   initialState: INITIAL_STATE,
-  reducers: {
-    fetchCarsDetailsStart(state) {
-      state.isLoading = true;
-      state.isError = false;
-    },
-    fetchCarsDetailsSuccess(state, action) {
-      state.isLoading = false;
-      state.carsDetails = action.payload;
-    },
-    fetchCarsDetailsFailure(state) {
-      state.isLoading = false;
-      state.isError = true;
-    },
-    clearCarsDetails(state) {
-      state.carsDetails = null;
-      state.isLoading = false;
-      state.isError = false;
-    },
-  },
+  extraReducers: (builder) =>
+    builder
+      .addCase(apiRequestCarDetailsById.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(apiRequestCarDetailsById.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.carsDetails = action.payload;
+      })
+      .addCase(apiRequestCarDetailsById.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
 });
 
 export const {
