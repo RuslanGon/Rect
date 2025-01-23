@@ -1,13 +1,11 @@
-import { Suspense, lazy, useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef} from "react";
 import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
-import { requestProductDetailsById } from "../services/api.js";
+// import { requestProductDetailsById } from "../services/api.js";
 import css from './ProductDetailsPage.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { apiRequestProductDetailsById } from "../redux/productDetails/operations.js";
-// import CommentPage from "./CommentPage.jsx";
-// import ReviewsPage from "./ReviewsPage.jsx";
 const CommentPage = lazy(() => import("./CommentPage.jsx"));
 const ReviewsPage = lazy(() => import("./ReviewsPage.jsx"));
 
