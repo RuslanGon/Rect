@@ -26,11 +26,4 @@ const carsSlice = createSlice({
       })
 });
 
-export const {
-  fetchCarsDetailsStart,
-  fetchCarsDetailsSuccess,
-  fetchCarsDetailsFailure,
-  clearCarsDetails,
-} = carsSlice.actions;
-
 export const carsReducer = carsSlice.reducer;

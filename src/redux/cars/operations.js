@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { requestCarsDetailsById} from "../../services/api.js";
 
 export const apiRequestCarDetailsById = createAsyncThunk(
-  "productDetaisl/get",
+  "carDetaisl/get",
   async (carId, thunkApi) => {
     try {
       const data = await requestCarsDetailsById(carId);
