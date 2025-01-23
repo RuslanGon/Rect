@@ -8,6 +8,11 @@ export const useProductSearch = ({isSearchPage = false}) => {
   const [isError, setIsError] = useState(false);
   // const [query, setQuery] = useState("");
 
+  // const dispaatch = useDispatch()
+  // const products = useSelector(state => state.productDetails.products)
+  // const isLoading = useSelector(state => state.productDetails.isLoading)
+  // const isError = useSelector(state => state.productDetails.isError)
+
   const [searchParams, setSearchParams] = useSearchParams()
   const query = searchParams.get('query')
 
