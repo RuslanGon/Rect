@@ -11,8 +11,8 @@ const ReviewPage = lazy(() => import("./ReviewPage.jsx"));
 
 const CarsDetailsPage = () => {
   const { carId } = useParams();
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const carsDetails = useSelector(state => state.cars.carsDetails)
   const isLoading = useSelector(state => state.cars.isLoading)
   const isError = useSelector(state => state.cars.isError)
