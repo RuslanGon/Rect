@@ -4,6 +4,8 @@ import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
 import { requestProductDetailsById } from "../services/api.js";
 import css from './ProductDetailsPage.module.css'
+import { useDispatch, useSelector } from "react-redux";
+import { apiRequestProductDetailsById } from "../redux/productDetails/operations.js";
 // import CommentPage from "./CommentPage.jsx";
 // import ReviewsPage from "./ReviewsPage.jsx";
 const CommentPage = lazy(() => import("./CommentPage.jsx"));
@@ -11,28 +13,36 @@ const ReviewsPage = lazy(() => import("./ReviewsPage.jsx"));
 
 const ProductDetailsPage = () => {
     const {productId} = useParams()
-    const [productDetails, setProductDetails] = useState(null)
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
+    // const [productDetails, setProductDetails] = useState(null)
+    // const [isLoading, setIsLoading] = useState(false);
+    // const [isError, setIsError] = useState(false);
+    const dispaatch = useDispatch()
+    const productDetails = useSelector(state => state.productDetails.productDetails)
+    const isLoading = useSelector(state => state.productDetails.isLoading)
+    const isError = useSelector(state => state.productDetails.isError)
 
     const location = useLocation()
     const backRefLink = useRef(location.state ?? '/products')
 
     useEffect(() => {
-        async function fetchProductDetails() {
-          setIsLoading(true);
-          try {
-            const data = await requestProductDetailsById(productId) ;
-            setProductDetails(data)
-          } catch (error) {
-            console.error("Error fetching products:", error);
-            setIsError(true);
-          } finally {
-            setIsLoading(false);
-          }
-        }
-        fetchProductDetails();
-      }, [productId]);
+      dispaatch(apiRequestProductDetailsById(productId))
+    }, [dispaatch, productId])
+
+    // useEffect(() => {
+    //     async function fetchProductDetails() {
+    //       setIsLoading(true);
+    //       try {
+    //         const data = await requestProductDetailsById(productId) ;
+    //         setProductDetails(data)
+    //       } catch (error) {
+    //         console.error("Error fetching products:", error);
+    //         setIsError(true);
+    //       } finally {
+    //         setIsLoading(false);
+    //       }
+    //     }
+    //     fetchProductDetails();
+    //   }, [productId]);
 
   return (
     <div>
