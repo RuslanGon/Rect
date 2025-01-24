@@ -1,17 +1,17 @@
 
 import MailBox from "../components/MailBox.jsx";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { nanoid } from "nanoid";
 import MailBoxForm from "../components/MailBoxForm.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser, deleteUser, setFilter } from "../redux/mailbox/mailboxReducer.js";
-import { selectorFilter, selectorUsers } from "../redux/mailbox/selectors.js";
+import { addUser, deleteUser } from "../redux/mailbox/mailboxReducer.js";
+import { selectFilterUser, selectorUsers } from "../redux/mailbox/selectors.js";
 import MailBoxFilter from "../components/MailBoxFilter.jsx";
 
 function MailBoxPage() {
 const dispatch = useDispatch()
 const users = useSelector(selectorUsers);
-const filter = useSelector(selectorFilter);
+const filteredUser = useSelector(selectFilterUser)
 
   useEffect(() => {
     localStorage.setItem("usersKey", JSON.stringify(users));
@@ -30,23 +30,22 @@ const filter = useSelector(selectorFilter);
     dispatch(deleteUser(userId));
   };
 
-  const onChangeFilter = (event) => {
 
-    dispatch(setFilter(event.target.value));
-  };
+  // const filteredUsers = useMemo(() => {
+  //   return users.filter((user) => {
+  //     return (
+  //       user.userEmail.toLowerCase().includes(filter.toLowerCase()) ||
+  //       user.userName.toLowerCase().includes(filter.toLowerCase())
+  //     );
+  //   });
+  // }, [users, filter]);
 
-  const filteredUsers = users.filter(user => {
-    return (
-      user.userEmail.toLowerCase().includes(filter.toLowerCase()) ||
-      user.userName.toLowerCase().includes(filter.toLowerCase())
-    );
-  });
 
   return (
     <div>
       <MailBoxForm AddUser={AddUser} />
-   <MailBoxFilter filter={filter} onChangeFilter={onChangeFilter}/>
-      <MailBox user={filteredUsers} boxTitle="Meest Express" onDeleteUser={onDeleteUser} />
+      <MailBoxFilter />
+      <MailBox user={filteredUser} boxTitle="Meest Express" onDeleteUser={onDeleteUser} />
     </div>
   );
 }
