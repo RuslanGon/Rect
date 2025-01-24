@@ -2,22 +2,19 @@ import { Suspense, lazy, useEffect, useRef} from "react";
 import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
-// import { requestProductDetailsById } from "../services/api.js";
 import css from './ProductDetailsPage.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { apiRequestProductDetailsById } from "../redux/productDetails/operations.js";
+import { selectorIsError, selectorIsLoading, selectorProductDetails } from "../redux/productDetails/selectors.js";
 const CommentPage = lazy(() => import("./CommentPage.jsx"));
 const ReviewsPage = lazy(() => import("./ReviewsPage.jsx"));
 
 const ProductDetailsPage = () => {
     const {productId} = useParams()
-    // const [productDetails, setProductDetails] = useState(null)
-    // const [isLoading, setIsLoading] = useState(false);
-    // const [isError, setIsError] = useState(false);
     const dispaatch = useDispatch()
-    const productDetails = useSelector(state => state.productDetails.productDetails)
-    const isLoading = useSelector(state => state.productDetails.isLoading)
-    const isError = useSelector(state => state.productDetails.isError)
+    const productDetails = useSelector(selectorProductDetails)
+    const isLoading = useSelector(selectorIsLoading)
+    const isError = useSelector(selectorIsError)
 
     const location = useLocation()
     const backRefLink = useRef(location.state ?? '/products')
@@ -25,22 +22,6 @@ const ProductDetailsPage = () => {
     useEffect(() => {
       dispaatch(apiRequestProductDetailsById(productId))
     }, [dispaatch, productId])
-
-    // useEffect(() => {
-    //     async function fetchProductDetails() {
-    //       setIsLoading(true);
-    //       try {
-    //         const data = await requestProductDetailsById(productId) ;
-    //         setProductDetails(data)
-    //       } catch (error) {
-    //         console.error("Error fetching products:", error);
-    //         setIsError(true);
-    //       } finally {
-    //         setIsLoading(false);
-    //       }
-    //     }
-    //     fetchProductDetails();
-    //   }, [productId]);
 
   return (
     <div>

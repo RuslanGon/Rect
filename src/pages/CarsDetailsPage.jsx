@@ -6,6 +6,7 @@ import Loader from "../components/Loader.jsx";
 import Error from "../components/Error.jsx";
 import css from "./ProductDetailsPage.module.css";
 import { apiRequestCarDetailsById } from "../redux/cars/operations.js";
+import { selectorCarsDetails, selectorIsError, selectorIsLoading } from "../redux/cars/selectors.js";
 
 const ReviewPage = lazy(() => import("./ReviewPage.jsx"));
 
@@ -13,9 +14,9 @@ const CarsDetailsPage = () => {
   const { carId } = useParams();
 
   const dispatch = useDispatch();
-  const carsDetails = useSelector(state => state.cars.carsDetails)
-  const isLoading = useSelector(state => state.cars.isLoading)
-  const isError = useSelector(state => state.cars.isError)
+  const carsDetails = useSelector(selectorCarsDetails)
+  const isLoading = useSelector(selectorIsLoading)
+  const isError = useSelector(selectorIsError)
 
   const location = useLocation();
   const backRefLink = useRef(location.state ?? "/cars");
