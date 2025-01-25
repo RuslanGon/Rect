@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-import { apiReqister } from "../redux/auth/operations.js";
+import { apiRegister } from "../redux/auth/operations.js";
 
 const initialValues = {
   name: "",
@@ -19,7 +19,8 @@ const RegistrationPage = () => {
   const dispatch = useDispatch()
 
   const handleSubmit = (values, actions) => {
-    dispatch(apiReqister(values))
+    dispatch(apiRegister(values))
+    
     actions.resetForm();
   };
 

@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import Layout from "./components/Layout.jsx";
+import { useDispatch } from "react-redux";
+import { apiRefreshUser } from "./redux/auth/operations.js";
 
 const MailBoxPage = lazy(() => import("./pages/MailBoxPage.jsx"))
 const ProductsPage = lazy(() => import("./pages/ProductsPage.jsx"));
@@ -17,6 +19,11 @@ const LoginPage = lazy(() => import("./pages/LoginPage.jsx"));
 const ContactsPage = lazy(() => import("./pages/ContactsPage.jsx"));
 
 const AppRouter = () => {
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(apiRefreshUser())
+  },[dispatch])
 
   return (
     <Layout>

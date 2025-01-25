@@ -1,8 +1,11 @@
 import clsx from "clsx";
 import { NavLink } from "react-router-dom";
 import css from "../AppRouter.module.css";
+import { useSelector } from "react-redux";
+import { selectIsSignedIn } from "../redux/auth/selectors.js";
 
 const Layout = ({children}) => {
+    const isSignedIn = useSelector(selectIsSignedIn)
 
   const getNavLink = ({ isActive }) =>
     clsx(css.navLink, {
@@ -16,6 +19,7 @@ const Layout = ({children}) => {
           <NavLink className={getNavLink} to="/">
             Home Page
           </NavLink>
+          {isSignedIn?  <></>:<></>  }
           <NavLink className={getNavLink} to="/registor">
             Register
           </NavLink>
