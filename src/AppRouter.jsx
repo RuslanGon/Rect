@@ -37,17 +37,17 @@ const AppRouter = () => {
     <div>
       <header>
         <nav className={css.nav}>
-        <NavLink className={getNavLink} to="/registor">
-        Registration
+        <NavLink className={getNavLink} to="/">
+            Home Page
+          </NavLink>
+          <NavLink className={getNavLink} to="/registor">
+        Register
           </NavLink>
           <NavLink className={getNavLink} to="/login">
         Login
           </NavLink>
           <NavLink className={getNavLink} to="/contacts">
           Contacts
-          </NavLink>
-        <NavLink className={getNavLink} to="/">
-            Home Page
           </NavLink>
           <NavLink className={getNavLink} to="/mailbox">
             MailBox
