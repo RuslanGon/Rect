@@ -3,6 +3,8 @@ import { Suspense, lazy, useEffect } from "react";
 import Layout from "./components/Layout.jsx";
 import { useDispatch } from "react-redux";
 import { apiRefreshUser } from "./redux/auth/operations.js";
+import RestrictedRoute from "./components/RestrictedRoute.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 const MailBoxPage = lazy(() => import("./pages/MailBoxPage.jsx"))
 const ProductsPage = lazy(() => import("./pages/ProductsPage.jsx"));
@@ -30,16 +32,17 @@ const AppRouter = () => {
         <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/registor" element={<RegistrationPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/contacts" element={<ContactsPage/>} />
-          <Route path="/mailbox" element={<MailBoxPage />} />
-          <Route path="/counter" element={<CounterPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/products/:productId/*" element={<ProductDetailsPage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/cars" element={<CarsPage />} />
-          <Route path="/cars/:carId/*" element={< CarsDetailsPage />} />
+          <Route path="/registor" element={<RestrictedRoute><RegistrationPage />                     </RestrictedRoute>} />
+          <Route path="/login" element={<RestrictedRoute><LoginPage /> </RestrictedRoute>} />
+          <Route path="/contacts" element={<PrivateRoute><ContactsPage/> </PrivateRoute>} />
+          <Route path="/mailbox" element={<PrivateRoute><MailBoxPage /> </PrivateRoute>} />
+          <Route path="/counter" element={<PrivateRoute><CounterPage /> </PrivateRoute>} />
+          <Route path="/products" element={<PrivateRoute><ProductsPage /> </PrivateRoute>} />
+          <Route path="/products/:productId/*" element={<PrivateRoute><ProductDetailsPage /> 
+          </PrivateRoute>} />
+          <Route path="/search" element={<PrivateRoute><SearchPage /></PrivateRoute>} />
+          <Route path="/cars" element={<PrivateRoute><CarsPage /> </PrivateRoute>} />
+          <Route path="/cars/:carId/*" element={<PrivateRoute><CarsDetailsPage /> </PrivateRoute>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         </Suspense>
