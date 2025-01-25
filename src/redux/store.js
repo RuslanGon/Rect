@@ -14,6 +14,7 @@ import {
 } from "redux-persist";
 import { productDetailsReducer } from "./productDetails/productDetailslSlice.js";
 import { authReducer } from "./auth/authSlice.js";
+import { contactsReducer } from "./contacts/contactsSlice.js";
 
 const mailboxPersistConfig = {
   key: "mailbox",
@@ -35,7 +36,8 @@ export const store = configureStore({
     mailbox: persisMailboxReducer,
     cars: carsReducer,
     productDetails: productDetailsReducer,
-    auth: persisAuthReducer
+    auth: persisAuthReducer,
+    phoneBook: contactsReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
