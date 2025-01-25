@@ -40,7 +40,7 @@ const LoginPage = () => {
           <ErrorMessage name="password" component="span" style={{ color: "red" }} />
         </label>
         <br />
-        <button type="submit">Register New User 👱</button>
+        <button type="submit">Login user 👱</button>
       </Form>
     </Formik>
   );
