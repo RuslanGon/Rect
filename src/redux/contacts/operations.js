@@ -26,7 +26,6 @@ export const apiGetContacts = createAsyncThunk(
     }
   );
 
-
   export const apiDeleteContact = createAsyncThunk(
     'contacts/delete',
     async (contactId, thunkAPI) => {
