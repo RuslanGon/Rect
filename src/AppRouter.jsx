@@ -2,6 +2,9 @@ import { NavLink, Route, Routes } from "react-router-dom";
 import css from "./AppRouter.module.css";
 import clsx from "clsx";
 import { Suspense, lazy } from "react";
+import RegistrationPage from "./pages/RegistrationPage .jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import ContactsPage from "./pages/ContactsPage.jsx";
 
 // import MailBoxPage from "./pages/MailBoxPage.jsx";
 // import ProductsPage from "./pages/ProductsPage.jsx";
@@ -34,6 +37,15 @@ const AppRouter = () => {
     <div>
       <header>
         <nav className={css.nav}>
+        <NavLink className={getNavLink} to="/registor">
+        Registration
+          </NavLink>
+          <NavLink className={getNavLink} to="/login">
+        Login
+          </NavLink>
+          <NavLink className={getNavLink} to="/contacts">
+          Contacts
+          </NavLink>
         <NavLink className={getNavLink} to="/">
             Home Page
           </NavLink>
@@ -58,6 +70,9 @@ const AppRouter = () => {
         <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/registor" element={<RegistrationPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/contacts" element={<ContactsPage/>} />
           <Route path="/mailbox" element={<MailBoxPage />} />
           <Route path="/counter" element={<CounterPage />} />
           <Route path="/products" element={<ProductsPage />} />
