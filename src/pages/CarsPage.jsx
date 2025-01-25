@@ -86,7 +86,7 @@ const CarsPage = () => {
             </li>
           ))
         ) : (
-          <p>Loading cars...</p>
+          <p>Not cars</p>
         )}
       </ul>
     </div>
